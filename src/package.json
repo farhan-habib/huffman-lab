@@ -4,7 +4,8 @@
 	"description": "Huffman Encoding is a popular algorithm used in text compression. The\r technique revolves around the use of a Priority Queue (Heap) and Binary\r Tree in order to achieve an optimal compression for static text.",
 	"main": "index.js",
 	"scripts": {
-		"start": "node index.js",
+		"start": "node index.js -o output.txt",
+		"dev": "nodemon index.js -o output.txt",
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"repository": {
