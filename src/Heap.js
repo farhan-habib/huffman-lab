@@ -115,4 +115,4 @@ class Heap {
 	}
 }
 
-module.exports = Heap;
+module.exports = { Heap };
