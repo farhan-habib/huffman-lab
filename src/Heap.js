@@ -13,6 +13,9 @@ class Heap {
 	peek() {
 		return this.#heap[0]();
 	}
+	debug() {
+		console.log(this.#heap);
+	}
 }
 
 module.exports = Heap;
