@@ -52,6 +52,20 @@ class Heap {
 		let parent = Math.floor((current - 1) / 2);
 		this.#heapifyup();
 	}
+	/**
+	 *
+	 * @returns {T} The root of the heap.
+	 * @throws If the heap is empty.
+	 */
+	remove() {
+		if (this.#heap.length == 0) {
+			throw "You can not remove an element from an empty heap";
+		}
+		let root = this.#heap[0];
+		this.#heap[0] = this.#heap.pop();
+		this.#heapifydown();
+		return root;
+	}
 
 	//Modularized functions
 
