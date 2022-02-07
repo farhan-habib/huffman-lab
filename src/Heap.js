@@ -38,6 +38,13 @@ class Heap {
 		return this.#heap[0]();
 	}
 	/**
+	 * Sees if the heap is empty
+	 * @returns {Boolean} True if the heap is empty, false otherwise.
+	 */
+	isEmpty() {
+		return this.#heap.length === 0;
+	}
+	/**
 	 *
 	 * @param {T} element The element to be added to the heap
 	 * @throws Will throw if the element is undefined
