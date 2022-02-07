@@ -1,3 +1,5 @@
+const Heap = require("./Heap");
+
 let arguments = process.argv.splice(2);
 
 let options = {}
@@ -18,4 +20,18 @@ for (let j = 0; j < argmap.length; j++) {
 
 	
 }
+
+let x = new Heap(function(a,b){return a - b});
+
+x.add(1);
+x.add(0);
+x.add(3);
+x.add(4);
+x.add(2);
+x.add(11);
+x.add(9);
+x.remove();
+
+console.log("--");
+x.debug();
 console.log(options);

@@ -73,13 +73,33 @@ class Heap {
 		let current = this.#heap.length - 1;
 		let parent = Math.floor((current - 1) / 2);
 
-		while (current > 0 && this.#comparator(this.#heap[parent] > this.#heap[current]) > 0) {
-			[this.#heap[parent], this.#heap[current]] = [this.#heap[current], this.#heap[parent]];
+		while (current > 0 && this.#comparator(this.#heap[parent], this.#heap[current]) > 0) {
+			[this.#heap[current], this.#heap[parent]] = [this.#heap[parent], this.#heap[current]];
 			current = parent;
 			parent = Math.floor((current - 1) / 2);
 		}
 	}
-
+	#heapifydown() {
+		let current = 0;
+		//TODO: Deal with while loop
+		while (current < this.#heap.length - 1) {
+			let left = current * 2 + 1;
+			let right = current * 2 + 2;
+			let smallest = current;
+			if (left != undefined && this.#comparator(this.#heap[left], this.#heap[current]) < 0) {
+				smallest = left;
+				if (right != undefined && this.#comparator(this.#heap[right], this.#heap[left]) < 0) {
+					smallest = right;
+				}
+			}
+			//smallest is now the smallest between current and its children
+			if (smallest === current) {
+				return;
+			}
+			[this.#heap[current], this.#heap[smallest]] = [this.#heap[smallest], this.#heap[current]];
+			current = smallest;
+		}
+	}
 	debug() {
 		console.log(this.#heap);
 	}
