@@ -3,8 +3,32 @@
  */
 class Heap {
 	#heap = [];
-	constructor() {
+
+	// comparator must be a function(a,b)
+	// which returns:
+	// < 0 if a < b
+	// = 0 if a == b
+	// > 0 if a > b
+	/**
+	 *  Returns less than 0 if a < b, 0 if a == b, and greater than 0 if a > b
+	 * @param {T} a The first element to be compared
+	 * @param {T} b	The second element to be compared
+	 * @throws if the comparator function has not been overwritten
+	 */
+	#comparator = function (a, b) {
+		throw "Comparator not defined!";
+	};
+	/**
+	 *
+	 * @param {Function} comparator Must be a comparator function that returns less than 0 if a < b, 0 if a == b, and greater than 0 if a > b
+	 * @throws if the comparator function is null or not defined.
+	 */
+	constructor(comparator) {
+		if (comparator == null) {
+			throw "Comparator can not be null";
+		}
 		this.#heap = [];
+		this.#comparator = comparator;
 	}
 	/**
 	 * Returns root without modifiying the heap.
@@ -35,7 +59,7 @@ class Heap {
 		let current = this.#heap.length - 1;
 		let parent = Math.floor((current - 1) / 2);
 
-		while (current > 0 && this.#heap[parent] > this.#heap[current]) {
+		while (current > 0 && this.#comparator(this.#heap[parent] > this.#heap[current]) > 0) {
 			[this.#heap[parent], this.#heap[current]] = [this.#heap[current], this.#heap[parent]];
 			current = parent;
 			parent = Math.floor((current - 1) / 2);
