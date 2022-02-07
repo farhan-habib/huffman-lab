@@ -68,6 +68,9 @@ class Heap {
 		if (this.#heap.length == 0) {
 			throw "You can not remove an element from an empty heap";
 		}
+		if (this.#heap.length == 1) {
+			return this.#heap.pop();
+		}
 		let root = this.#heap[0];
 		this.#heap[0] = this.#heap.pop();
 		this.#heapifydown();
