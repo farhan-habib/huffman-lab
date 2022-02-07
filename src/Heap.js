@@ -26,6 +26,14 @@ class Heap {
 		//heapify up
 		let current = this.#heap.length - 1;
 		let parent = Math.floor((current - 1) / 2);
+		this.#heapifyup();
+	}
+
+	//Modularized functions
+
+	#heapifyup() {
+		let current = this.#heap.length - 1;
+		let parent = Math.floor((current - 1) / 2);
 
 		while (current > 0 && this.#heap[parent] > this.#heap[current]) {
 			[this.#heap[parent], this.#heap[current]] = [this.#heap[current], this.#heap[parent]];
