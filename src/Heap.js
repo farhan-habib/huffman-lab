@@ -35,7 +35,7 @@ class Heap {
 	 * @returns {T} Root of the heap. Returns undefined if heap is empty.
 	 */
 	peek() {
-		return this.#heap[0]();
+		return this.#heap[0];
 	}
 	/**
 	 * Sees if the heap is empty
@@ -93,9 +93,11 @@ class Heap {
 		let current = 0;
 		//TODO: Deal with while loop
 		while (current < this.#heap.length - 1) {
+			;
 			let left = current * 2 + 1;
 			let right = current * 2 + 2;
 			let smallest = current;
+
 			if (left != undefined && this.#comparator(this.#heap[left], this.#heap[current]) < 0) {
 				smallest = left;
 				if (right != undefined && this.#comparator(this.#heap[right], this.#heap[left]) < 0) {
@@ -112,6 +114,10 @@ class Heap {
 	}
 	debug() {
 		console.log(this.#heap);
+	}
+
+	size() {
+		return this.#heap.length;
 	}
 }
 
