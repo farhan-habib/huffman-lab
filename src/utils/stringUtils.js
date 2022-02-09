@@ -10,7 +10,7 @@ stringUtils = class {
 		}
 		return freq;
 	}
-	static frequencySorter(freqObj) {
+	static lexicSorter(freqObj) {
 		let freqArr = [];
 		for (let key in freqObj) {
 			freqArr.push({
@@ -18,7 +18,7 @@ stringUtils = class {
 				"freq": freqObj[key]
 			})
 		}
-		freqArr.sort(function (a, b) { return b.freq - a.freq });
+		freqArr.sort(function (a, b) { return a.char.localeCompare(b.char); });
 		return freqArr;
 	}
 
