@@ -91,23 +91,25 @@ class Heap {
 	}
 	#heapifydown() {
 		let current = 0;
-		//TODO: Deal with while loop
-		while (current < this.#heap.length - 1) {
-			;
+		while (current < this.#heap.length) {
 			let left = current * 2 + 1;
 			let right = current * 2 + 2;
 			let smallest = current;
 
-			if (left != undefined && this.#comparator(this.#heap[left], this.#heap[current]) < 0) {
+
+			if (this.#heap[left] && this.#comparator(this.#heap[left], this.#heap[smallest]) < 0) {
 				smallest = left;
-				if (right != undefined && this.#comparator(this.#heap[right], this.#heap[left]) < 0) {
-					smallest = right;
-				}
 			}
+
+			if (this.#heap[right] && this.#comparator(this.#heap[right], this.#heap[smallest]) < 0) {
+				smallest = right;
+			}
+
 			//smallest is now the smallest between current and its children
 			if (smallest === current) {
 				return;
 			}
+
 			[this.#heap[current], this.#heap[smallest]] = [this.#heap[smallest], this.#heap[current]];
 			current = smallest;
 		}

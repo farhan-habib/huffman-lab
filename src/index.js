@@ -20,7 +20,7 @@ for (let i = 0; i < arguments.length; i++) {
 	}
 }
 
-/**
+
 let text = "XNSRZFYVFJJJUDGCTZPSQICCCZISIQHKQZOFSIWKMKDVNWUDWLOSVTDTRVYFSKDQAPWVMHTREURYFKPMKQWKTXYTCBSGOVCCKOHV";
 let freqObj = stringUtils.getCharFrequency(text);
 freqObj = stringUtils.frequencySorter(freqObj);
@@ -41,15 +41,15 @@ for (let i = 0; i < freqObj.length; i++) {
 	huffmanHeap.add(new huffmanNode(freqObj[i]));
 }
 huffmanHeap.remove();
-// huffmanHeap.debug();
-**/
+huffmanHeap.debug();
 
-let x = new Heap((a, b) => { return a - b });
 
-x.add(1);
-x.add(2);
-x.add(0);
-x.add(29);
-x.add(130)
-x.remove();
-x.debug();
+// let x = new Heap((a, b) => { return a - b });
+
+// x.add(1);
+// x.add(2);
+// x.add(0);
+// x.add(29);
+// x.add(130)
+// x.remove();
+// x.debug();
