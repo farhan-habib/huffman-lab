@@ -65,16 +65,19 @@ class Heap {
 	 * @throws If the heap is empty.
 	 */
 	remove() {
+
 		if (this.#heap.length == 0) {
 			throw "You can not remove an element from an empty heap";
 		}
 		if (this.#heap.length == 1) {
 			return this.#heap.pop();
 		}
-		let root = this.#heap[0];
+		const removed = this.#heap[0];
 		this.#heap[0] = this.#heap.pop();
+
+
 		this.#heapifydown();
-		return root;
+		return removed;
 	}
 
 	//Modularized functions
@@ -91,28 +94,27 @@ class Heap {
 	}
 	#heapifydown() {
 		let current = 0;
+
 		while (current < this.#heap.length) {
-			let left = current * 2 + 1;
-			let right = current * 2 + 2;
+			let left = 2 * current + 1;
+			let right = 2 * current + 2;
 			let smallest = current;
-
-
-			if (this.#heap[left] && this.#comparator(this.#heap[left], this.#heap[smallest]) < 0) {
+			//checking if index is less than length rather than checking if truthy or falsy in case element put into Heap is Null
+			if ((left < this.#heap.length) && (this.#comparator(this.#heap[left], this.#heap[current]) < 0)) {	//left child is defined
 				smallest = left;
 			}
-
-			if (this.#heap[right] && this.#comparator(this.#heap[right], this.#heap[smallest]) < 0) {
+			if ((right < this.#heap.length) && (this.#comparator(this.#heap[right], this.#heap[current]) < 0)) {	//right child is defined
 				smallest = right;
 			}
-
-			//smallest is now the smallest between current and its children
 			if (smallest === current) {
 				return;
 			}
-
+			// if (swap === null) break;
 			[this.#heap[current], this.#heap[smallest]] = [this.#heap[smallest], this.#heap[current]];
+
 			current = smallest;
 		}
+
 	}
 	debug() {
 		console.log(this.#heap);
