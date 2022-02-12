@@ -79,7 +79,6 @@ class Heap {
 		this.#heapifydown();
 		return removed;
 	}
-
 	//Modularized functions
 
 	#heapifyup() {
@@ -96,28 +95,29 @@ class Heap {
 		let current = 0;
 
 		while (current < this.#heap.length) {
-			let left = 2 * current + 1;
-			let right = 2 * current + 2;
+			let left = (2 * current) + 1;
+			let right = (2 * current) + 2;
 			let smallest = current;
 			//checking if index is less than length rather than checking if truthy or falsy in case element put into Heap is Null
-			if ((left < this.#heap.length) && (this.#comparator(this.#heap[left], this.#heap[current]) < 0)) {	//left child is defined
+			// console.log(this.#comparator(this.#heap[left], this.#heap[current]));
+			if ((left < this.#heap.length) && (this.#comparator(this.#heap[left], this.#heap[smallest]) < 0)) {	//left child is defined
 				smallest = left;
 			}
-			if ((right < this.#heap.length) && (this.#comparator(this.#heap[right], this.#heap[current]) < 0)) {	//right child is defined
+			if ((right < this.#heap.length) && (this.#comparator(this.#heap[right], this.#heap[smallest]) < 0)) {	//right child is defined
 				smallest = right;
 			}
 			if (smallest === current) {
 				return;
 			}
-			// if (swap === null) break;
-			[this.#heap[current], this.#heap[smallest]] = [this.#heap[smallest], this.#heap[current]];
-
+			let swap = this.#heap[current];
+			this.#heap[current] = this.#heap[smallest];
+			this.#heap[smallest] = swap;
 			current = smallest;
 		}
 
 	}
 	debug() {
-		console.log(this.#heap);
+		return this.#heap;
 	}
 
 	size() {
