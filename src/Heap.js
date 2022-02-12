@@ -67,14 +67,13 @@ class Heap {
 	remove() {
 
 		if (this.#heap.length == 0) {
-			throw "You can not remove an element from an empty heap";
+			return undefined;
 		}
 		if (this.#heap.length == 1) {
 			return this.#heap.pop();
 		}
 		const removed = this.#heap[0];
 		this.#heap[0] = this.#heap.pop();
-
 
 		this.#heapifydown();
 		return removed;
