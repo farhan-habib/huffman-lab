@@ -1,3 +1,4 @@
+const { comparasionUtils } = require("./utils/comparasionUtils");
 /**
  * @template T
  */
@@ -84,8 +85,11 @@ class Heap {
 		let current = this.#heap.length - 1;
 		let parent = Math.floor((current - 1) / 2);
 
-		while (current > 0 && this.#comparator(this.#heap[parent], this.#heap[current]) > 0) {
-			[this.#heap[current], this.#heap[parent]] = [this.#heap[parent], this.#heap[current]];
+		while (current > 0 && comparasionUtils.lessThan(this.#heap[current], this.#heap[parent], this.#comparator)) {
+			//swap this.#heap[parent] and this.#heap[current];
+			let swap = this.#heap[parent];
+			this.#heap[parent] = this.#heap[current];
+			this.#heap[current] = swap;
 			current = parent;
 			parent = Math.floor((current - 1) / 2);
 		}
@@ -94,16 +98,16 @@ class Heap {
 		let current = 0;
 
 		while (current < this.#heap.length) {
+
 			let left = (2 * current) + 1;
 			let right = (2 * current) + 2;
 			let smallest = current;
 			//checking if index is less than length rather than checking if truthy or falsy in case element put into Heap is Null
-			// console.log(this.#comparator(this.#heap[left], this.#heap[current]));
-			if ((left < this.#heap.length) && (this.#comparator(this.#heap[left], this.#heap[smallest]) < 0)) {	//left child is defined
-				smallest = left;
-			}
-			if ((right < this.#heap.length) && (this.#comparator(this.#heap[right], this.#heap[smallest]) < 0)) {	//right child is defined
+			if (right < this.#heap.length && comparasionUtils.lessThan(this.#heap[right], this.#heap[smallest], this.#comparator)) {//right child is defined
 				smallest = right;
+			}
+			if (left < this.#heap.length && comparasionUtils.lessThan(this.#heap[left], this.#heap[smallest], this.#comparator)) {//left child is defined
+				smallest = left;
 			}
 			if (smallest === current) {
 				return;
@@ -113,8 +117,11 @@ class Heap {
 			this.#heap[smallest] = swap;
 			current = smallest;
 		}
-
 	}
+
+
+
+
 	debug() {
 		return this.#heap;
 	}
