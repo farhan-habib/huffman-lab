@@ -18,7 +18,9 @@ stringUtils = class {
 				"freq": freqObj[key]
 			})
 		}
-		freqArr.sort(function (a, b) { return a.char.localeCompare(b.char); });
+		freqArr.sort(function (a, b) {
+			return a.char.localeCompare(b.char);
+		});
 		return freqArr;
 	}
 
