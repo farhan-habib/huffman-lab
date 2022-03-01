@@ -119,16 +119,10 @@ class Heap {
 		}
 	}
 
-
-
-
 	debug() {
 		return this.#heap;
 	}
 
-	size() {
-		return this.#heap.length;
-	}
 }
 
 module.exports = { Heap };

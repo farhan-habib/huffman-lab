@@ -20,17 +20,18 @@ huffmanEncoder = class {
 	}
 	//takes a heap and makes a huffmantree
 	static #createHuffmanTree(minHeap) {
-		while (minHeap.size() > 1) {
+		while (minHeap.peek() != null) {
 			let left = minHeap.remove();
 			let right = minHeap.remove();
+			if(right == null) return left;
 			let newNode = new this.#huffmanNode({ char: null, freq: left.freq + right.freq });
 			newNode.left = left;
 			newNode.right = right;
 			minHeap.add(newNode);
 		}
+		return minHeap.peek();
 	}
-	static #decodeHuffmanTree(minHeap) {
-		let root = minHeap.peek();
+	static #decodeHuffmanTree(root) {
 		let huffmanObj = [];
 		decodeHuffmanHelper(root, "")
 
@@ -51,9 +52,8 @@ huffmanEncoder = class {
 	static encode(string) {
 		let freqObj = this.#createFreqObj(string);
 		let minHeap = this.#createMinHeap(freqObj);
-		this.#createHuffmanTree(minHeap);
-		return this.#decodeHuffmanTree(minHeap);
-
+		let huffmanTree = this.#createHuffmanTree(minHeap);
+		return this.#decodeHuffmanTree(huffmanTree);
 	}
 }
 
