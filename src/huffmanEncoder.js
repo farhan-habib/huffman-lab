@@ -34,9 +34,9 @@ huffmanEncoder = class {
 	static #decodeHuffmanTree(root) {
 		let huffmanObj = [];
 		decodeHuffmanHelper(root, "")
-
 		function decodeHuffmanHelper(node, string) {
-			if (node.left == null && node.right == null && node.char !== null) {
+			//no need to check if node is null or not since all huffman trees are full trees
+			if (node.left == null && node.right == null) {
 				huffmanObj.push({ char: node.char, value: string });
 				return;
 			}
@@ -51,6 +51,7 @@ huffmanEncoder = class {
 	 */
 	static encode(string) {
 		let freqObj = this.#createFreqObj(string);
+		console.log(freqObj);
 		let minHeap = this.#createMinHeap(freqObj);
 		let huffmanTree = this.#createHuffmanTree(minHeap);
 		return this.#decodeHuffmanTree(huffmanTree);
