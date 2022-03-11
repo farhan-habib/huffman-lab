@@ -51,8 +51,8 @@ huffmanEncoder = class {
 	 */
 	static encode(string) {
 		let freqObj = this.#createFreqObj(string);
-		console.log(freqObj);
 		let minHeap = this.#createMinHeap(freqObj);
+		console.log(freqObj);
 		let huffmanTree = this.#createHuffmanTree(minHeap);
 		return this.#decodeHuffmanTree(huffmanTree);
 	}

@@ -11,20 +11,36 @@ if(options.inputFile == null || options.outputFile == null) throw new Error("No 
 
 
 
-let huff = huffmanEncoder.encode("Shipping ships ship ships");
-console.log(huff);
 
-process.exit();
 let data = fs.readFileSync(options.inputFile, "utf8");
-console.log(data);
-process.exit();
-	data = data.toString();
-	console.log(data);
 
-	let huffmanData = huffmanEncoder.encode(data.toString());
-	console.log(huffmanData);
+let huffmanData = huffmanEncoder.encode(data.toString());
+const replacements = {
+	"\n": "(Line Break)",
+	"\t": "(Tab)",
+	"\r": "(Carriage Return)",
+	" ": "(Space)",
+}
 
-const filepath = "./test.txt";
-// huffmanEncodeFile(filepath);
+huffmanData = huffmanData.map(({char, value}) => {
+return {char: (replacements[char] || char),value: value}
+});
+
+huffmanData.sort(function (a, b) {
+	return a.char < b.char ? -1 : 1;
+});
+
+
+console.log(huffmanData);
+let output = "---------- Huffman Dictionary ----------" + "\n";
+
+huffmanData.forEach(({char, value}) => {
+	output += `${char}\t\t${value}\n`;
+});
+output 	= output.substring(0, output.length-1);
+
+
+fs.writeFileSync(options.outputFile, output);
+
 
 
