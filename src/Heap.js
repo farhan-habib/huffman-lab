@@ -46,7 +46,7 @@ class Heap {
 		return this.#heap.length === 0;
 	}
 	/**
-	 *
+	 * Adds an element to the heap
 	 * @param {T} element The element to be added to the heap
 	 * @throws Will throw if the element is undefined
 	 */
@@ -61,7 +61,7 @@ class Heap {
 		this.#heapifyup();
 	}
 	/**
-	 *
+	 * pops the top element off of the heap and returns it
 	 * @returns {T} The root of the heap.
 	 * @throws If the heap is empty.
 	 */
@@ -118,11 +118,6 @@ class Heap {
 			current = smallest;
 		}
 	}
-
-	debug() {
-		return this.#heap;
-	}
-
 }
 
 module.exports = { Heap };
