@@ -22,7 +22,6 @@ const argumentParser = class{
 			return args.findIndex(flagFinder);
 		}
 		
-		console.log(args);
 		if (findFlag() === -1) return options; //no output file given, return empty options object
 		
 		while(findFlag() != -1){
